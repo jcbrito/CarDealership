@@ -1,1 +1,142 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <title>Edit Vehicle</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row m-4 border border-dark">
+                <div class="col-3 text-center">
+                    <span class="h3">Edit Vehicle</span>
+                </div>
+            </div>
+            <div class="row border border-dark">
+                
+                <!-- FORM -->
+                <form action="addUser" method="POST">
+                    
+                    <!-- Make and model -->
+                    <div class="form-group row">
+                        <label for="make" class="col-2 col-form-label">Make</label>
+                        <div class="col-4">
+                            <select id="make" name="make" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                        
+                        <label for="model" class="col-2 col-form-label">Model</label>
+                        <div class="col-4">
+                            <select id="model" name="model" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Type and body style -->
+                    <div class="form-group row">
+                        <label for="type" class="col-2 col-form-label">Type</label>
+                        <div class="col-4">
+                            <select id="type" name="type" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                        
+                        <label for="bodyStyle" class="col-2 col-form-label">Body Style</label>
+                        <div class="col-4">
+                            <select id="bodyStyle" name="bodyStyle" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Year and transmission -->
+                    <div class="form-group row">
+                        <label for="year" class="col-2 col-form-label">Year</label>
+                        <div class="col-4">
+                            <input type="text" name="year" id="year" class="form-control"/>
+                        </div>
+                        
+                        <label for="transmission" class="col-2 col-form-label">Transmission</label>
+                        <div class="col-4">
+                            <select id="transmission" name="transmission" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Color and Interior Color -->
+                    <div class="form-group row">
+                        <label for="color" class="col-2 col-form-label">Color</label>
+                        <div class="col-4">
+                            <select id="color" name="color" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                        
+                        <label for="interiorColor" class="col-2 col-form-label">Interior Color</label>
+                        <div class="col-4">
+                            <select id="interiorColor" name="interiorColor" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Mileage and VIN # -->
+                    <div class="form-group row">
+                        <label for="mileage" class="col-2 col-form-label">Mileage</label>
+                        <div class="col-4">
+                            <input type="text" name="mileage" id="mileage" class="form-control"/>
+                        </div>
+                        
+                        <label for="vin" class="col-2 col-form-label">VIN #</label>
+                        <div class="col-4">
+                            <select id="vin" name="vin" class="form-group">
+                                <!-- thymeleaf enumerate -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- MSRP and Saleprice  -->
+                    <div class="form-group row">
+                        <label for="msrp" class="col-2 col-form-label">MSRP</label>
+                        <div class="col-4">
+                            <input type="text" name="msrp" id="msrp" class="form-control"/>
+                        </div>
+                        
+                        <label for="salePrice" class="col-2 col-form-label">Sale Price</label>
+                        <div class="col-4">
+                            <input type="text" name="salePrice" id="salePrice" class="form-control"/>
+                        </div>
+                    </div>
+                    
+                    <!-- description text area -->
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" rows="4"></textarea>
+                    </div>
+                    
+                    <!-- picture upload -->
+                    <div class="form-group">
+                        <label for="picture">Upload Picture...</label>
+                        <input type="file" class="form-control-file" id="picture">
+                    </div>
+                    
+                    <!-- submit button -->
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
+        
+    </body>
+</html>
+
 
