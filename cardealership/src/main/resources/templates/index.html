@@ -118,7 +118,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!<!-- insert retrieved cars here -->
+                        <!-- insert retrieved cars here -->
+                        <tr th:each="car : ${cars}">
+                            <td th:text="${car.year}">Car Year</td>
+                            <td th:text="${car.make}">Car Make</td>
+                            <td th:text="${car.model}">Car Model</td>
+                            <td th:text="${car.salePrice}">Car Price</td>
+                            <td>Details</td>
+                            
+                        </tr>
                     </tbody>
                 </table>
             </div>
