@@ -4,10 +4,13 @@
  */
 package com.mthree.cardealership.controller;
 
+import org.springframework.stereotype.Controller;
+
 /**
  *
  * @author Juan
  */
+@Controller
 public class HomeController {
     
 }
