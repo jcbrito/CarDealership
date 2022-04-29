@@ -1,6 +1,7 @@
 
 package com.mthree.cardealership.entities;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 
@@ -8,8 +9,26 @@ public class Car {
     private int carId;
     private String make, model, color;
     private int year;
+    private BigDecimal salePrice;
+
+    public BigDecimal getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public boolean isSold() {
+        return sold;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
     private String vin;
     private boolean used;
+    private boolean sold;
 
     public int getCarId() {
         return carId;

@@ -1,6 +1,7 @@
 package com.mthree.cardealership.dao;
 
 import com.mthree.cardealership.entities.Car;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -100,13 +101,15 @@ public class CarDaoDB implements CarDao{
         @Override
         public Car mapRow(ResultSet rs, int index) throws SQLException {
             Car car = new Car();
-            car.setCarId(rs.getInt("carId"));
-            car.setMake(rs.getString("make"));
-            car.setModel(rs.getString("model"));
-            car.setColor(rs.getString("color"));
-            car.setVin(rs.getString("vin"));
-            car.setYear(rs.getInt("year"));
-            car.setUsed(rs.getBoolean("used"));
+            car.setCarId(rs.getInt("CarId"));
+            car.setMake(rs.getString("Make"));
+            car.setModel(rs.getString("Model"));
+            car.setColor(rs.getString("Color"));
+            car.setVin(rs.getString("Vin"));
+            car.setYear(rs.getInt("CarYear"));
+            car.setUsed(rs.getBoolean("Used"));
+            car.setSold(rs.getBoolean("Sold"));
+            car.setSalePrice(rs.getBigDecimal("SalePrice"));
             
             return car;
         }
