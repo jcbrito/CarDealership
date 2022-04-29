@@ -104,12 +104,19 @@ public class CarDaoDB implements CarDao{
             car.setCarId(rs.getInt("CarId"));
             car.setMake(rs.getString("Make"));
             car.setModel(rs.getString("Model"));
+            car.setTransmission(rs.getString("Transmission"));
             car.setColor(rs.getString("Color"));
+            car.setInterior(rs.getString("Interior"));
             car.setVin(rs.getString("Vin"));
             car.setYear(rs.getInt("CarYear"));
+            car.setMileage(rs.getInt("Mileage"));
             car.setUsed(rs.getBoolean("Used"));
             car.setSold(rs.getBoolean("Sold"));
             car.setSalePrice(rs.getBigDecimal("SalePrice"));
+            car.setMsrp(rs.getBigDecimal("MSRP"));
+            car.setBodyStyle(rs.getString("BodyStyle"));
+            car.setDescription(rs.getString("Description"));
+            car.setImageBinary(rs.getBlob("ImageBinary"));
             
             return car;
         }

@@ -2,15 +2,63 @@
 package com.mthree.cardealership.entities;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Objects;
 
 
 public class Car {
     private int carId;
-    private String make, model, color;
+    private String make, model, color, interior, transmission, bodyStyle, description;
     private int year;
-    private BigDecimal salePrice;
+    private BigDecimal salePrice, msrp;
+    private int mileage;
+    private String vin;
+    private boolean used;
+    private boolean sold;
+    private Blob imageBinary;
 
+    public String getInterior() {
+        return interior;
+    }
+
+    public void setInterior(String interior) {
+        this.interior = interior;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public String getBodyStyle() {
+        return bodyStyle;
+    }
+
+    public void setBodyStyle(String bodyStyle) {
+        this.bodyStyle = bodyStyle;
+    }
+
+    public BigDecimal getMsrp() {
+        return msrp;
+    }
+
+    public void setMsrp(BigDecimal msrp) {
+        this.msrp = msrp;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    
+    
     public BigDecimal getSalePrice() {
         return salePrice;
     }
@@ -26,9 +74,6 @@ public class Car {
     public void setSold(boolean sold) {
         this.sold = sold;
     }
-    private String vin;
-    private boolean used;
-    private boolean sold;
 
     public int getCarId() {
         return carId;
@@ -85,6 +130,24 @@ public class Car {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Blob getImageBinary() {
+        return imageBinary;
+    }
+
+    public void setImageBinary(Blob imageBinary) {
+        this.imageBinary = imageBinary;
+    }
+    
+    
 
     @Override
     public int hashCode() {
