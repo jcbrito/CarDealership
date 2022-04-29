@@ -11,15 +11,14 @@ CREATE TABLE IF NOT EXISTS Car (
     Model VARCHAR(20) NOT NULL,
     CarYear YEAR NOT NULL,
     SalePrice DECIMAL(15,2) NOT NULL,
+    MSRP DECIMAL(15,2) NOT NULL,
     Color VARCHAR(20) NOT NULL,
+    Interior VARCHAR(20) NOT NULL,
+    BodyStyle VARCHAR(20) NOT NULL,
+    Transmission VARCHAR(20) NOT NULL,
+    Mileage INT NOT NULL,
     Used BOOLEAN NOT NULL,
     Sold BOOLEAN NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS ForSale (
-	CarId INT PRIMARY KEY,
-    Price FLOAT NOT NULL,
-    CONSTRAINT fk_forsale_carid FOREIGN KEY (CarId) REFERENCES Car(CarId)
 );
 
 
@@ -80,13 +79,6 @@ CREATE TABLE IF NOT EXISTS CustomerAddress (
     CONSTRAINT fk_customeraddress_customerid FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
 );
 
-CREATE TABLE IF NOT EXISTS SoldCar (
-	CarId INT,
-    CustomerId INT,
-    PRIMARY KEY (CarId, CustomerId),
-    CONSTRAINT fk_soldcar_carid FOREIGN KEY (CarId) REFERENCES Car(CarId),
-    CONSTRAINT fk_soldcar_customerid FOREIGN KEY (CustomerId) REFERENCES customer(CustomerId)
-);
     
 CREATE TABLE IF NOT EXISTS Invoice (
 	InvoiceId INT AUTO_INCREMENT PRIMARY KEY,
