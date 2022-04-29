@@ -115,6 +115,8 @@ public class CarDaoDB implements CarDao{
             car.setSalePrice(rs.getBigDecimal("SalePrice"));
             car.setMsrp(rs.getBigDecimal("MSRP"));
             car.setBodyStyle(rs.getString("BodyStyle"));
+            car.setDescription(rs.getString("Description"));
+            car.setImageBinary(rs.getBlob("ImageBinary"));
             
             return car;
         }

@@ -2,18 +2,20 @@
 package com.mthree.cardealership.entities;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Objects;
 
 
 public class Car {
     private int carId;
-    private String make, model, color, interior, transmission, bodyStyle;
+    private String make, model, color, interior, transmission, bodyStyle, description;
     private int year;
     private BigDecimal salePrice, msrp;
     private int mileage;
     private String vin;
     private boolean used;
     private boolean sold;
+    private Blob imageBinary;
 
     public String getInterior() {
         return interior;
@@ -128,6 +130,24 @@ public class Car {
     public void setUsed(boolean used) {
         this.used = used;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Blob getImageBinary() {
+        return imageBinary;
+    }
+
+    public void setImageBinary(Blob imageBinary) {
+        this.imageBinary = imageBinary;
+    }
+    
+    
 
     @Override
     public int hashCode() {
