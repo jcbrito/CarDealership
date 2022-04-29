@@ -4,10 +4,19 @@
  */
 package com.mthree.cardealership.dao;
 
+import com.mthree.cardealership.entities.Car;
+import java.util.List;
+
 /**
  *
  * @author Juan
  */
 public interface CarDao {
-    
+    Car getCarById(int carId);
+    List<Car> getAllCars();
+    List<Car> searchCars(String searchTerm, int minPrice, int maxPrice, 
+            int minYear, int maxYear);
+    Car addCar(Car car);
+    Car updateCar(Car car);
+    Car deleteCarById(int carId);
 }
