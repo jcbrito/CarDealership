@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Car (
 	Vin VARCHAR(17) NOT NULL,
     Make VARCHAR(20) NOT NULL,
     Model VARCHAR(20) NOT NULL,
-    `Description` VARCHAR(300),
+    CarDescription VARCHAR(300),
     CarYear YEAR NOT NULL,
     SalePrice DECIMAL(15,2) NOT NULL,
     MSRP DECIMAL(15,2) NOT NULL,
