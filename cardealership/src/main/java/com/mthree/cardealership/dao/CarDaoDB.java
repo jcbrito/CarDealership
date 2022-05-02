@@ -84,8 +84,8 @@ public class CarDaoDB implements CarDao{
     @Override
     @Transactional
     public Car addCar(Car car) {
-        final String ADD_CAR = "INSERT INTO car(Vin, Make, Model, Description,"
-                + "CarYear, SalePrice, MSRP, Color, Interior, BodyStyle, Transmission,"
+        final String ADD_CAR = "INSERT INTO car(Vin, Make, Model, CarDescription, "
+                + "CarYear, SalePrice, MSRP, Color, Interior, BodyStyle, Transmission, "
                 + "Mileage, Used, Sold, ImageBinary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         jdbc.update(ADD_CAR, 
@@ -98,6 +98,7 @@ public class CarDaoDB implements CarDao{
                 car.getMsrp(),
                 car.getColor(),
                 car.getInterior(),
+                car.getBodyStyle(),
                 car.getTransmission(),
                 car.getMileage(),
                 car.isUsed(),
@@ -105,15 +106,15 @@ public class CarDaoDB implements CarDao{
                 car.getImageBinary()
         );
         
-        car.setCarId( jdbc.queryForObject("SELECT LAST_INSERTED_ID()", Integer.class) );
+        car.setCarId( jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class) );
         
         return car;
     }
 
     @Override
     public void updateCar(Car car) {
-        final String UPDATE_CAR = "UPDATE car SET Vin = ?, Make = ?, Model = ?, Description = ?,"
-                + "CarYear = ?, SalePrice = ?, MSRP = ?, Color = ?, Interior = ?, BodyStyle = ?, Transmission = ?,"
+        final String UPDATE_CAR = "UPDATE car SET Vin = ?, Make = ?, Model = ?, CarDescription = ?, "
+                + "CarYear = ?, SalePrice = ?, MSRP = ?, Color = ?, Interior = ?, BodyStyle = ?, Transmission = ?, "
                 + "Mileage = ?, Used = ?, Sold = ?, ImageBinary = ? WHERE CarId = ?";
         
         jdbc.update(UPDATE_CAR, 
@@ -126,6 +127,7 @@ public class CarDaoDB implements CarDao{
                 car.getMsrp(),
                 car.getColor(),
                 car.getInterior(),
+                car.getBodyStyle(),
                 car.getTransmission(),
                 car.getMileage(),
                 car.isUsed(),
@@ -169,7 +171,7 @@ public class CarDaoDB implements CarDao{
             car.setSalePrice(rs.getBigDecimal("SalePrice"));
             car.setMsrp(rs.getBigDecimal("MSRP"));
             car.setBodyStyle(rs.getString("BodyStyle"));
-            car.setDescription(rs.getString("Description"));
+            car.setDescription(rs.getString("CarDescription"));
             car.setImageBinary(rs.getBlob("ImageBinary"));
             
             return car;

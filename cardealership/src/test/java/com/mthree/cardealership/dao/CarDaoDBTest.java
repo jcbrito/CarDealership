@@ -14,27 +14,19 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  *
  * @author Henry
  */
+@SpringBootTest
 public class CarDaoDBTest {
     
     @Autowired
     CarDao carDao;
     
-    public CarDaoDBTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
+ 
     @BeforeEach
     public void setUp() {
         List<Car> cars = carDao.getAllCars();
@@ -44,16 +36,7 @@ public class CarDaoDBTest {
         }
     }
     
-    @AfterEach
-    public void tearDown() {
-    }
 
-    /**
-     * Test of getCarById method, of class CarDaoDB.
-     */
-    @Test
-    public void testGetCarById() {
-    }
 
     /**
      * Test of getAllCars method, of class CarDaoDB.
@@ -105,32 +88,4 @@ public class CarDaoDBTest {
         assertTrue( cars.contains(car2) );
     }
 
-    /**
-     * Test of searchCars method, of class CarDaoDB.
-     */
-    @Test
-    public void testSearchCars() {
-    }
-
-    /**
-     * Test of addCar method, of class CarDaoDB.
-     */
-    @Test
-    public void testAddCar() {
-    }
-
-    /**
-     * Test of updateCar method, of class CarDaoDB.
-     */
-    @Test
-    public void testUpdateCar() {
-    }
-
-    /**
-     * Test of deleteCarById method, of class CarDaoDB.
-     */
-    @Test
-    public void testDeleteCarById() {
-    }
-    
 }
