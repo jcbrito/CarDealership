@@ -27,15 +27,27 @@ public class HomeController {
     public String index(Model model) {
 
         List<Car> cars = dao.getAllCars();
-        model.addAttribute("/", cars);
+        model.addAttribute("cars", cars);
 
         return "/";
     }
 
     @GetMapping("new")
-    public String displayTeachers(Model model) {
+    public String displayNewCars(Model model) {
 
         return "new";
+    }
+
+    @GetMapping("used")
+    public String displayUsedCars(Model model) {
+
+        return "used";
+    }
+
+    @GetMapping("homeSpecials")
+    public String displaySpecials(Model model) {
+
+        return "homeSpecials";
     }
 
 }

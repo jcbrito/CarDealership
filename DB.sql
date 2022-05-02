@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Car (
     Mileage INT NOT NULL,
     Used BOOLEAN NOT NULL,
     Sold BOOLEAN NOT NULL,
-    ImageBinary MEDIUMBLOB NOT NULL
+    ImageBinary MEDIUMBLOB 
 );
 
 
