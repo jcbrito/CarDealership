@@ -1,4 +1,4 @@
-var rootPath = '@Url.Content("~")';
+//var rootPath = '@Url.Content("~")';
 
 $(document).ready( function() {
     loadAllVehicles();
@@ -7,7 +7,11 @@ $(document).ready( function() {
 function loadAllVehicles() {
     $.ajax({
        type: "GET",
-       url: rootPath + "admin/vehicles",
+       url: "getAllVehicles",
+       dataType: "json",
+       headers: {
+           'Accept' : 'application/json'
+       },
        success: function(vehicleArray) {
            var resultsDiv = $("#searchResultsDiv");
            
@@ -19,5 +23,6 @@ function loadAllVehicles() {
                listingCard.append( $('<div>').attr({class: "card-header"}).append( $("<h5>").val(title) ) );
            });
        }
+       
     });
 }

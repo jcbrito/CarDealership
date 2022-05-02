@@ -22,9 +22,9 @@ public class AdminController {
     
     @GetMapping("vehicles")
     public String displayCars(Model model){
-        List<Car> cars = carDao.getAllCars();
+        List<Car> vehicles = carDao.getAllCars();
         
-        
+        model.addAttribute("vehicles", vehicles);
         
         return "vehicles";
     }

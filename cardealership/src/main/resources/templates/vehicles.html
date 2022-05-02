@@ -130,12 +130,10 @@
         </div>
                     
         <div id="searchResultsDiv" class="container">
-            <!-- populate search results here with a Card for each result, using AJAX -->
             
-            
-            <div class="card">
+            <div class="card" th:each="vehicle : ${vehicles}">
                 <div class="card-header">
-                    <h5>Year Make Model</h5>
+                    <h5 th:text="${vehicle.year}+' '+${vehicle.Make}+' '+${vehicle.Model}">Title</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -143,19 +141,19 @@
                             <img class="img-thumbnail" src="https://media.istockphoto.com/photos/illustration-of-generic-compact-car-perspective-view-picture-id1148853697?k=20&m=1148853697&s=612x612&w=0&h=x_IL5R5PF48fTZhuD-1gMHDqstoxyrUfRMH-Oet-7Mk=">
                         </div>
                         <div class="col-3">
-                            <p>Body Style: </p>
-                            <p>Transmission: </p>
-                            <p>Color: </p>
+                            <p th:text="'Body Style: '+${vehicle.bodyStyle}">Body Style</p>
+                            <p th:text="'Transmission: '+${vehicle.transmission}">Transmission</p>
+                            <p th:text="'Color: '+${vehicle.color}">Color</p>
                         </div>
                         <div class="col-3">
-                            <p>Interior: </p>
-                            <p>Mileage: </p>
-                            <p>VIN #: </p>
+                            <p th:text="'Interior: '+${vehicle.interior}">Interior </p>
+                            <p th:text="'Mileage: '+${vehicle.mileage}">Mileage</p>
+                            <p th:text="'VIN#: '+${vehicle.vin}">VIN #</p>
                         </div>
                         <div class="col-3">
-                            <p>Sale Price: </p>
-                            <p>MSRP: </p>
-                            <button type="button" id="editButton" class="btn btn-primary">Edit</button>
+                            <p th:text="'Sale Price: $'+${vehicle.salePrice}">Sale Price</p>
+                            <p th:text="'MSRP: $'+${vehicle.msrp}">MSRP </p>
+                            <a class="btn btn-primary" href="#" th:href="@{/editVehicle(id=${vehicle.carId})}">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -166,11 +164,10 @@
         
     </div>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <script src="../adminvehicles.js"></script>
 </body>
 
 </html>
