@@ -132,7 +132,8 @@ public class CarDaoDB implements CarDao{
                 car.getMileage(),
                 car.isUsed(),
                 car.isSold(),
-                car.getImageBinary()
+                car.getImageBinary(),
+                car.getCarId()
         );
         
         

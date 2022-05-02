@@ -144,6 +144,7 @@
                             <p th:text="'Body Style: '+${vehicle.bodyStyle}">Body Style</p>
                             <p th:text="'Transmission: '+${vehicle.transmission}">Transmission</p>
                             <p th:text="'Color: '+${vehicle.color}">Color</p>
+                            <p th:text="${vehicle.used} ? 'USED' : 'NEW'"></p>
                         </div>
                         <div class="col-3">
                             <p th:text="'Interior: '+${vehicle.interior}">Interior </p>
@@ -153,7 +154,7 @@
                         <div class="col-3">
                             <p th:text="'Sale Price: $'+${vehicle.salePrice}">Sale Price</p>
                             <p th:text="'MSRP: $'+${vehicle.msrp}">MSRP </p>
-                            <a class="btn btn-primary" href="#" th:href="@{/editVehicle(id=${vehicle.carId})}">Edit</a>
+                            <a class="btn btn-primary" href="#" th:href="@{/admin/editVehicle(carId=${vehicle.carId})}">Edit</a>
                         </div>
                     </div>
                 </div>
