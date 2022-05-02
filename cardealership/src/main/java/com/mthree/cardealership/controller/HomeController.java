@@ -27,7 +27,7 @@ public class HomeController {
     public String index(Model model) {
 
         List<Car> cars = dao.getAllCars();
-        model.addAttribute("/", cars);
+        model.addAttribute("cars", cars);
 
         return "/";
     }
