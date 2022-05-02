@@ -22,14 +22,15 @@ public class HomeController {
 
     @Autowired
     CarDao dao;
-
+    
+    
     @RequestMapping("home")
-    public String index(Model model) {
+    public String mainPage(Model model) {
 
         List<Car> cars = dao.getAllCars();
         model.addAttribute("cars", cars);
 
-        return "/";
+        return "home";
     }
 
     @GetMapping("new")
