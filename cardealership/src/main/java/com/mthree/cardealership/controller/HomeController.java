@@ -50,4 +50,10 @@ public class HomeController {
         return "homeSpecials";
     }
 
+    @GetMapping("contact")
+    public String displayContact(Model model) {
+
+        return "contact";
+    }
+
 }
