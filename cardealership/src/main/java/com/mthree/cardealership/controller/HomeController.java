@@ -33,9 +33,21 @@ public class HomeController {
     }
 
     @GetMapping("new")
-    public String displayTeachers(Model model) {
+    public String displayNewCars(Model model) {
 
         return "new";
+    }
+
+    @GetMapping("used")
+    public String displayUsedCars(Model model) {
+
+        return "used";
+    }
+
+    @GetMapping("homeSpecials")
+    public String displaySpecials(Model model) {
+
+        return "homeSpecials";
     }
 
 }
