@@ -12,6 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -81,18 +82,71 @@ public class CarDaoDB implements CarDao{
     }
 
     @Override
+    @Transactional
     public Car addCar(Car car) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String ADD_CAR = "INSERT INTO car(Vin, Make, Model, Description,"
+                + "CarYear, SalePrice, MSRP, Color, Interior, BodyStyle, Transmission,"
+                + "Mileage, Used, Sold, ImageBinary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        jdbc.update(ADD_CAR, 
+                car.getVin(),
+                car.getMake(),
+                car.getModel(),
+                car.getDescription(),
+                car.getYear(),
+                car.getSalePrice(),
+                car.getMsrp(),
+                car.getColor(),
+                car.getInterior(),
+                car.getTransmission(),
+                car.getMileage(),
+                car.isUsed(),
+                car.isSold(),
+                car.getImageBinary()
+        );
+        
+        car.setCarId( jdbc.queryForObject("SELECT LAST_INSERTED_ID()", Integer.class) );
+        
+        return car;
     }
 
     @Override
-    public Car updateCar(Car car) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void updateCar(Car car) {
+        final String UPDATE_CAR = "UPDATE car SET Vin = ?, Make = ?, Model = ?, Description = ?,"
+                + "CarYear = ?, SalePrice = ?, MSRP = ?, Color = ?, Interior = ?, BodyStyle = ?, Transmission = ?,"
+                + "Mileage = ?, Used = ?, Sold = ?, ImageBinary = ? WHERE CarId = ?";
+        
+        jdbc.update(UPDATE_CAR, 
+                car.getVin(),
+                car.getMake(),
+                car.getModel(),
+                car.getDescription(),
+                car.getYear(),
+                car.getSalePrice(),
+                car.getMsrp(),
+                car.getColor(),
+                car.getInterior(),
+                car.getTransmission(),
+                car.getMileage(),
+                car.isUsed(),
+                car.isSold(),
+                car.getImageBinary()
+        );
+        
+        
     }
 
     @Override
-    public Car deleteCarById(int carId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Transactional
+    public void deleteCarById(int carId) {
+        
+        //De;ete sales invoices that reference the car to be deleted
+        final String DELETE_INVOICE = "DELETE FROM invoice WHERE invoice.CarId = ?";
+        jdbc.update(DELETE_INVOICE, carId);
+        
+        final String DELETE_CAR = "DELETE FROM car WHERE CarId = ?";
+        jdbc.update(DELETE_CAR, carId);
+        
     }
     
     

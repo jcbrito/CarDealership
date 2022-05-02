@@ -17,6 +17,6 @@ public interface CarDao {
     List<Car> searchCars(String searchTerm, int minPrice, int maxPrice, 
             int minYear, int maxYear);
     Car addCar(Car car);
-    Car updateCar(Car car);
-    Car deleteCarById(int carId);
+    void updateCar(Car car);
+    void deleteCarById(int carId);
 }
