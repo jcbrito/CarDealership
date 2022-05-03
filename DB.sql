@@ -23,6 +23,13 @@ CREATE TABLE IF NOT EXISTS Car (
     ImageBinary MEDIUMBLOB 
 );
 
+CREATE TABLE IF NOT EXISTS special(
+	specialId int auto_increment primary key,
+    carId	int,
+    CONSTRAINT fk_special_car FOREIGN KEY (carId) REFERENCES car(carId)
+   
+);
+
 
 CREATE TABLE IF NOT EXISTS Discount (
 	DiscountId INT AUTO_INCREMENT PRIMARY KEY,

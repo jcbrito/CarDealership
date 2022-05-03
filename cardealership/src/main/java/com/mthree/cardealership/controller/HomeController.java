@@ -30,18 +30,18 @@ public class HomeController {
     public String mainPage(Model model) {
 
         List<Car> cars = dao.getAllCars();
+        List<Car> specials = dao.getAllSpecials();
         model.addAttribute("cars", cars);
+        model.addAttribute("specials", specials);
 
         return "home";
     }
 
-
     @GetMapping("new")
-    public String displayNewCars( Model model, String makeModelYear, String priceMin, String priceMax, String yearMax, String yearMin) {
+    public String displayNewCars(Model model, String makeModelYear, String priceMin, String priceMax, String yearMax, String yearMin) {
         //getting all fields from the search bar
         //year make or model
 
-        
         List<Car> cars = dao.getAllCars();
 
         cars = cars.stream().filter((c) -> !c.isUsed()).collect(Collectors.toList());
@@ -81,15 +81,12 @@ public class HomeController {
 
         return "new";
     }
-    
-    
+
     @GetMapping("used")
     public String displayUsedCars(Model model, String makeModelYear, String priceMin, String priceMax, String yearMax, String yearMin) {
 
         //getting all fields from the search bar
         //year make or model
-
-        
         List<Car> cars = dao.getAllCars();
 
         cars = cars.stream().filter((c) -> c.isUsed()).collect(Collectors.toList());
@@ -134,7 +131,7 @@ public class HomeController {
     @GetMapping("homeSpecials")
     public String displaySpecials(Model model) {
 
-        List<Car> cars = dao.getAllCars();
+        List<Car> cars = dao.getAllSpecials();
         model.addAttribute("cars", cars);
 
         return "homeSpecials";

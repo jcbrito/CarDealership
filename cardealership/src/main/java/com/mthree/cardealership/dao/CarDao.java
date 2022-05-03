@@ -19,4 +19,5 @@ public interface CarDao {
     Car addCar(Car car);
     void updateCar(Car car);
     void deleteCarById(int carId);
+    List<Car> getAllSpecials();
 }
