@@ -1,7 +1,9 @@
 package com.mthree.cardealership.controller;
 
 import com.mthree.cardealership.dao.CarDao;
+import com.mthree.cardealership.dao.UserDao;
 import com.mthree.cardealership.entities.Car;
+import com.mthree.cardealership.entities.User;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -32,6 +34,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     CarDao carDao;
+    
+    @Autowired
+    UserDao userDao;
     
     @GetMapping("vehicles")
     public String displayCars(Model model){
@@ -161,5 +166,14 @@ public class AdminController {
             return null;
         }
         
+    }
+    
+    @GetMapping("users")
+    public String displayUsers(Model model){
+        List<User> users = userDao.getAllUsers();
+        
+        model.addAttribute("users", users);
+        
+        return "users";
     }
 }
