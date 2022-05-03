@@ -58,11 +58,11 @@ public class CarDaoDB implements CarDao{
         
         if(minPrice != 0) filters.push("car.salePrice >= " + minPrice);
         if(maxPrice != 0) filters.push("car.salePrice <= " + minPrice);
-        if(minYear != 0) filters.push("car.year >= " + minYear);
-        if(maxYear != 0) filters.push("car.year <= " + maxYear);
+        if(minYear != 0) filters.push("car.carYear >= " + minYear);
+        if(maxYear != 0) filters.push("car.carYear <= " + maxYear);
         if(trimmedTerm.length() > 0) filters.push("(car.make LIKE '%"+trimmedTerm+"%'"
                 + "OR car.model LIKE '%"+trimmedTerm+"%')");
-        if(year != 0) filters.push("car.year = " + year);
+        if(year != 0) filters.push("car.carYear = " + year);
         
         if(!filters.isEmpty()){
             GET_CARS_WITH_FILTERS += " WHERE ";
