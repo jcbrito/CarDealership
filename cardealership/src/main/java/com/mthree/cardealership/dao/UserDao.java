@@ -4,10 +4,20 @@
  */
 package com.mthree.cardealership.dao;
 
+import com.mthree.cardealership.entities.User;
+
+import java.util.List;
+
 /**
  *
  * @author Henry
  */
 public interface UserDao {
-    
+    User getUserById(int userId);
+    User getUserByEmail(String email);
+    List<User> getAllUsers();
+    List<User> searchUser(int userId);
+    User addUser(User user);
+    void updateUser(User user);
+    void deleteUserById(int userId);
 }

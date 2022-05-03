@@ -44,17 +44,17 @@ public class CarDaoDBTest {
     @Test
     public void testGetAllCars() {
         Car car1 = new Car();
-        car1.setMake("TestMake");
-        car1.setModel("TestModel");
-        car1.setColor("Testcolor");
-        car1.setInterior("TestInterior");
-        car1.setTransmission("TestTrans");
-        car1.setBodyStyle("TestBodyStyle");
-        car1.setDescription("descriptionHere");
-        car1.setYear(2001);
-        car1.setSalePrice(new BigDecimal("1400.00") );
-        car1.setMsrp(new BigDecimal("1500.00") );
-        car1.setMileage(150000);
+        car1.setMake("Ford");
+        car1.setModel("Festiva");
+        car1.setColor("Red");
+        car1.setInterior("Gray");
+        car1.setTransmission("Manual");
+        car1.setBodyStyle("Coupe");
+        car1.setDescription("A silly little red car");
+        car1.setYear(1990);
+        car1.setSalePrice(new BigDecimal("775.00") );
+        car1.setMsrp(new BigDecimal("7750.00") );
+        car1.setMileage(234567);
         car1.setVin("testvin");
         car1.setUsed(true);
         car1.setSold(false);
@@ -63,17 +63,17 @@ public class CarDaoDBTest {
         car1 = carDao.addCar(car1);
         
         Car car2 = new Car();
-        car2.setMake("TestMake2");
-        car2.setModel("TestModel2");
-        car2.setColor("Testcolor2");
-        car2.setInterior("TestInterior2");
-        car2.setTransmission("TestTrans2");
-        car2.setBodyStyle("TestBodyStyle2");
-        car2.setDescription("descriptionHere2");
-        car2.setYear(2002);
-        car2.setSalePrice(new BigDecimal("1402.00") );
-        car2.setMsrp(new BigDecimal("1502.00") );
-        car2.setMileage(122222);
+        car2.setMake("Honda");
+        car2.setModel("CRX");
+        car2.setColor("Yellow");
+        car2.setInterior("Black");
+        car2.setTransmission("Manual");
+        car2.setBodyStyle("Coupe");
+        car2.setDescription("This car is cursed");
+        car2.setYear(1991);
+        car2.setSalePrice(new BigDecimal("2999.00") );
+        car2.setMsrp(new BigDecimal("6729.00") );
+        car2.setMileage(155000);
         car2.setVin("testvin2");
         car2.setUsed(true);
         car2.setSold(false);
