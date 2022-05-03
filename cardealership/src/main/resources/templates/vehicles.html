@@ -148,7 +148,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <img class="img-thumbnail" src="https://media.istockphoto.com/photos/illustration-of-generic-compact-car-perspective-view-picture-id1148853697?k=20&m=1148853697&s=612x612&w=0&h=x_IL5R5PF48fTZhuD-1gMHDqstoxyrUfRMH-Oet-7Mk=">
+                            <img class="img-thumbnail" th:src="@{/admin/getImage(carId=${vehicle.carId})}">
                         </div>
                         <div class="col-3">
                             <p th:text="'Body Style: '+${vehicle.bodyStyle}">Body Style</p>

@@ -6,11 +6,16 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,13 +85,13 @@ public class AdminController {
         vehicle.setBodyStyle(request.getParameter("bodyStyle"));
         vehicle.setDescription(request.getParameter("description"));
         
-        //read passed img Part to byte array
+        //read passed img Part to byte array to blob for storage
         InputStream in = request.getPart("picture").getInputStream();
         byte[] imgBinary = new byte[in.available()];
         in.read(imgBinary);
         Blob blob = new SerialBlob( imgBinary );
-        
         vehicle.setImageBinary( blob );  
+        //
         
         carDao.updateCar(vehicle);
         
@@ -99,7 +104,7 @@ public class AdminController {
     }
     
     @PostMapping("addVehicle")
-    public String performAddVehicle(HttpServletRequest request){
+    public String performAddVehicle(HttpServletRequest request) throws Exception{
         Car vehicle = new Car();
         
         vehicle.setMake(request.getParameter("make"));
@@ -116,10 +121,45 @@ public class AdminController {
         vehicle.setMsrp(new BigDecimal(request.getParameter("msrp")));
         vehicle.setBodyStyle(request.getParameter("bodyStyle"));
         vehicle.setDescription(request.getParameter("description"));
-        vehicle.setImageBinary(null);   //update later
+        
+        //read passed img Part to byte array to blob for storage
+        InputStream in = request.getPart("picture").getInputStream();
+        byte[] imgBinary = new byte[in.available()];
+        in.read(imgBinary);
+        Blob blob = new SerialBlob( imgBinary );
+        vehicle.setImageBinary( blob );  
+        //
         
         carDao.addCar(vehicle);
         
         return "redirect:vehicles";
+    }
+    
+    /**
+     * Retrieves the image BLOB for a given car ID and builds an HTTP response
+     * entity that can be used in the src attribute of an image tag
+     * @param carId
+     * @return ResponseEntity
+     */
+    @GetMapping("getImage")
+    public ResponseEntity<byte[]> getImage(@RequestParam int carId){
+        
+        try{
+            Blob imgBlob = carDao.getCarById(carId).getImageBinary();
+            byte[] imgBinary = imgBlob.getBytes(1, (int)imgBlob.length());
+            final HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_PNG);
+            
+            return new ResponseEntity<>(
+                    imgBinary, 
+                    headers,
+                    HttpStatus.OK
+            );
+            
+        }
+        catch(SQLException e){
+            return null;
+        }
+        
     }
 }
