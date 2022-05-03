@@ -174,9 +174,12 @@ public class CarDaoDB implements CarDao {
         @Override
         @Transactional
         public void deleteCarById(int carId) {
+            //Delete any specials that reference the car
+            final String DELETE_SPECIALS = "DELETE FROM special WHERE special.carId = ?";
+            jdbc.update(DELETE_SPECIALS, carId);
 
-        //De;ete sales invoices that reference the car to be deleted
-        final String DELETE_INVOICE = "DELETE FROM invoice WHERE invoice.CarId = ?";
+            //De;ete sales invoices that reference the car to be deleted
+            final String DELETE_INVOICE = "DELETE FROM invoice WHERE invoice.CarId = ?";
             jdbc.update(DELETE_INVOICE, carId);
 
             final String DELETE_CAR = "DELETE FROM car WHERE CarId = ?";
@@ -188,7 +191,7 @@ public class CarDaoDB implements CarDao {
         public List<Car> getAllSpecials() {
 
         final String GET_CARS = "select * from car "
-                    + "join special on car.carid = special.carid";
+                    + "join special on car.carId = special.carId";
             return jdbc.query(GET_CARS, new CarMapper());
 
         }
