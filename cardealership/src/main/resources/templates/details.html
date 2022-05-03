@@ -24,7 +24,7 @@
 
         <title>Car Dealership</title>
     </head>
-    <body>
+    <body onload='setField()'>
 
         <!-- What will be visible in all pages--> 
         <div class="container">
@@ -57,9 +57,18 @@
 
         <!-- Main Body of Page -->
 
-        <!-- Start Jumbotron -->
+        <script type='text/javascript'>
 
-        <!-- End jumbotron -->
+            function setField() {
+                var qString = location.search;
+                if (qString.indexOf('vin') != -1) {
+                    var data = qString.substring(qString.indexOf('=') + 1, qString.length);
+                    document.forms[0].myDate.value = data;
+                }
+            }
+
+        </script>
+
 
         <hr class="solid"> 
 
@@ -76,59 +85,59 @@
                 <div class="col-6 text-right"><strong>Year </strong></div>
                 <div class="col-6 text-left">
 
-            <div class="row border border-dark">
-                <div class="col-3 text-right"><strong>Year </strong></div>
-                <div class="col-3 text-left">
+                    <div class="row border border-dark">
+                        <div class="col-3 text-right"><strong>Year </strong></div>
+                        <div class="col-3 text-left">
 
-                    <span th:text="${car.year}">display year</span>
-                </div>
+                            <span th:text="${car.year}">display year</span>
+                        </div>
 
-                <div class="col-3 text-right"><strong>Make</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.make}">display make</span>
-                </div>
+                        <div class="col-3 text-right"><strong>Make</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.make}">display make</span>
+                        </div>
 
-                <div class="col-3 text-right"><strong>Model</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.model}">display description</span>
-                </div>
-                <div class="col-3 text-right"><strong>Description</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.description}">display description</span>
-                </div>
-                <div class="col-3 text-right"><strong>Color</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.color}">Display Color</span><br/>
-                </div>
-                <div class="col-3 text-right"><strong>Mileage</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.mileage}">Display Mileage</span><br/>
-                </div>
-                <div class="col-3 text-right"><strong>Transmission</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.transmission}">Display Transmission</span><br/>
-                </div>
-                <div class="col-3 text-right"><strong>Interior</strong></div>
-                <div class="col-3 text-left">
-                    <span th:text="${car.color}">Display Interior</span><br/>
-                </div>
-
-
-                <div class="col text-center m-3">
-                    <td><a href="#" th:href="@{contact(vin=${car.vin})}" class="button">Contact us</a></td>
-                </div>
+                        <div class="col-3 text-right"><strong>Model</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.model}">display description</span>
+                        </div>
+                        <div class="col-3 text-right"><strong>Description</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.description}">display description</span>
+                        </div>
+                        <div class="col-3 text-right"><strong>Color</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.color}">Display Color</span><br/>
+                        </div>
+                        <div class="col-3 text-right"><strong>Mileage</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.mileage}">Display Mileage</span><br/>
+                        </div>
+                        <div class="col-3 text-right"><strong>Transmission</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.transmission}">Display Transmission</span><br/>
+                        </div>
+                        <div class="col-3 text-right"><strong>Interior</strong></div>
+                        <div class="col-3 text-left">
+                            <span th:text="${car.color}">Display Interior</span><br/>
+                        </div>
 
 
-            </div>
+                        <div class="col text-center m-3">
+                            <td><a href="#" th:href="@{contact(vin=${car.vin})}" class="button">Contact us</a></td>
+                        </div>
 
-        </div>
-        <!-- End main body -->
 
-        <!-- Optional JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    </body>
-</html>
+                    </div>
+
+                </div>
+                <!-- End main body -->
+
+                <!-- Optional JavaScript -->
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+                </body>
+                </html>
