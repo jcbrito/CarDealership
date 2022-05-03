@@ -147,6 +147,7 @@ public class HomeController {
     @GetMapping("contact")
     public String displayContact(Model model) {
 
+        
         return "contact";
     }
 

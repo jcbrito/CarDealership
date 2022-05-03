@@ -70,7 +70,6 @@
         <!<!-- Table to display some cars -->
         <div class="container">
 
-
             <div class="row m-4 border border-dark">
                 <div class="col-6 text-right"><strong>Year </strong></div>
                 <div class="col-6 text-left">
@@ -106,7 +105,13 @@
                 <div class="col-6 text-left">
                     <span th:text="${car.color}">Display Interior</span><br/>
                 </div>
+
+                <div class="col text-center m-3">
+                    <td><a href="#" th:href="@{contact(vin=${car.vin})}" class="button">Contact us</a></td>
+                </div>
+
             </div>
+
         </div>
         <!-- End main body -->
 
