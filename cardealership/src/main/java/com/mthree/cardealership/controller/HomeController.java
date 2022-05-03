@@ -9,11 +9,11 @@ import com.mthree.cardealership.entities.Car;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -35,68 +35,100 @@ public class HomeController {
         return "home";
     }
 
+
     @GetMapping("new")
-    public String displayNewCars(Model model) {
-
-        List<Car> cars = dao.getAllCars();
-
-        cars = cars.stream().filter((c) -> !c.isUsed()).collect(Collectors.toList());
-        model.addAttribute("cars", cars);
-        return "new";
-    }
-
-    @GetMapping("search")
-    public String displayNewCars(HttpServletRequest request, Model model, String makeModelYear, String minPrice, String maxPrice, String yearMax, String yearMin) {
+    public String displayNewCars( Model model, String makeModelYear, String priceMin, String priceMax, String yearMax, String yearMin) {
         //getting all fields from the search bar
         //year make or model
 
-
+        
         List<Car> cars = dao.getAllCars();
 
         cars = cars.stream().filter((c) -> !c.isUsed()).collect(Collectors.toList());
 
-        if (makeModelYear != null) {
+        if (makeModelYear != null && !makeModelYear.equalsIgnoreCase("")) {
             cars = cars.stream().filter((c) -> c.getMake().equalsIgnoreCase(makeModelYear)
                     || c.getModel().equalsIgnoreCase(makeModelYear)
                     || (c.getYear() + "").equalsIgnoreCase(makeModelYear))
                     .collect(Collectors.toList());
         }
 
-        // if min price is not empty lokk for it
-        if (minPrice != null && !minPrice.equalsIgnoreCase("none")) {
-            cars = cars.stream().filter((c) -> c.getSalePrice().compareTo(new BigDecimal(minPrice)) < 0)
+        // if min price is not empty look for it
+        if (priceMin != null && !priceMin.equalsIgnoreCase("none")) {
+            cars = cars.stream().filter((c) -> c.getSalePrice().compareTo(new BigDecimal(priceMin)) >= 0)
                     .collect(Collectors.toList());
         }
 
         //if max price is provided filter the lost again
-        if (maxPrice != null && !maxPrice.equalsIgnoreCase("none")) {
-            cars = cars.stream().filter((c) -> c.getSalePrice().compareTo(new BigDecimal(maxPrice)) > 0)
+        if (priceMax != null && !priceMax.equalsIgnoreCase("none")) {
+            cars = cars.stream().filter((c) -> c.getSalePrice().compareTo(new BigDecimal(priceMax)) <= 0)
                     .collect(Collectors.toList());
         }
 
         // the same for max year
         if (yearMax != null && !yearMax.equalsIgnoreCase("none")) {
-            cars = cars.stream().filter((c) -> c.getYear() <= Integer.parseInt(yearMin))
+            cars = cars.stream().filter((c) -> c.getYear() <= Integer.parseInt(yearMax))
                     .collect(Collectors.toList());
         }
 
         // checking min year
         if (yearMin != null && !yearMin.equalsIgnoreCase("none")) {
-            cars = cars.stream().filter((c) -> c.getYear() >= Integer.parseInt(yearMax))
+            cars = cars.stream().filter((c) -> c.getYear() >= Integer.parseInt(yearMin))
                     .collect(Collectors.toList());
         }
 
         model.addAttribute("cars", cars);
 
-        return "search";
+        return "new";
     }
-
+    
+    
     @GetMapping("used")
-    public String displayUsedCars(Model model) {
+    public String displayUsedCars(Model model, String makeModelYear, String priceMin, String priceMax, String yearMax, String yearMin) {
 
+        //getting all fields from the search bar
+        //year make or model
+
+        
         List<Car> cars = dao.getAllCars();
 
+        cars = cars.stream().filter((c) -> c.isUsed()).collect(Collectors.toList());
+
+        if (makeModelYear != null && !makeModelYear.equalsIgnoreCase("")) {
+            cars = cars.stream().filter((c) -> c.getMake().equalsIgnoreCase(makeModelYear)
+                    || c.getModel().equalsIgnoreCase(makeModelYear)
+                    || (c.getYear() + "").equalsIgnoreCase(makeModelYear))
+                    .collect(Collectors.toList());
+        }
+
+        // if min price is not empty look for it
+        if (priceMin != null && !priceMin.equalsIgnoreCase("none")) {
+            cars = cars.stream().filter((c) -> c.getSalePrice().compareTo(new BigDecimal(priceMin)) >= 0)
+                    .collect(Collectors.toList());
+        }
+
+        //if max price is provided filter the lost again
+        if (priceMax != null && !priceMax.equalsIgnoreCase("none")) {
+            cars = cars.stream().filter((c) -> c.getSalePrice().compareTo(new BigDecimal(priceMax)) <= 0)
+                    .collect(Collectors.toList());
+        }
+
+        // the same for max year
+        if (yearMax != null && !yearMax.equalsIgnoreCase("none")) {
+            cars = cars.stream().filter((c) -> c.getYear() <= Integer.parseInt(yearMax))
+                    .collect(Collectors.toList());
+        }
+
+        // checking min year
+        if (yearMin != null && !yearMin.equalsIgnoreCase("none")) {
+            cars = cars.stream().filter((c) -> c.getYear() >= Integer.parseInt(yearMin))
+                    .collect(Collectors.toList());
+        }
+
+        model.addAttribute("cars", cars);
+
         return "used";
+
     }
 
     @GetMapping("homeSpecials")
