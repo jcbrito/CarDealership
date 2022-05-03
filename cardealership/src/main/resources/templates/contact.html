@@ -74,9 +74,9 @@
                 <label for="email">Email:</label><br>
                 <input type="email" id="email" name="email"><br>
                 <label for="phone">Phone:</label><br>
-                <input type="number" id="phone" name="phone"><br>
+                <input type="number" id="phone" name="phone"><br><br>
 
-                <label for="message">Message:</label>
+                <label for="message">Message:</label><br>
 
                 <textarea id="message" name="message" rows="5" cols="50">
 
@@ -87,18 +87,30 @@
 
         </div>
 
-        <div id="googleMap" style="width:100%;height:400px;"></div>
+        <div id="googleMap" style="width:60%;height:400px;  margin: auto;
+             width: 50%;
+             border: 3px solid green;
+             padding: 15px;"></div>
 
         <!-- End main body -->
 
         <script>
+
+            const myLocation = {lat: 41.8902, lng: 12.4922};
             function myMap() {
                 var mapProp = {
-                    center: new google.maps.LatLng(51.508742, -0.120850),
-                    zoom: 5,
+                    center: new google.maps.LatLng(41.8902, 12.4922),
+                    zoom: 15,
+
                 };
                 var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var marker = new google.maps.Marker();
+
+                marker.setMap(mapProp);
             }
+
+
+
         </script>
 
         <!-- Optional JavaScript -->
