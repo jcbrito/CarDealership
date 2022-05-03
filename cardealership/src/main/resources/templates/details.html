@@ -69,43 +69,44 @@
 
         <!<!-- Table to display some cars -->
         <div class="container">
+            <img class="img-fluid" th:src="@{/admin/getImage(carId=${car.carId})}" alt="car Image">
 
-
-            <div class="row m-4 border border-dark">
-                <div class="col-6 text-right"><strong>Year </strong></div>
-                <div class="col-6 text-left">
+            <div class="row border border-dark">
+                <div class="col-3 text-right"><strong>Year </strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.year}">display year</span>
                 </div>
 
-                <div class="col-6 text-right"><strong>Make</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Make</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.make}">display make</span>
                 </div>
 
-                <div class="col-6 text-right"><strong>Model</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Model</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.model}">display description</span>
                 </div>
-                <div class="col-6 text-right"><strong>Description</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Description</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.description}">display description</span>
                 </div>
-                <div class="col-6 text-right"><strong>Color</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Color</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.color}">Display Color</span><br/>
                 </div>
-                <div class="col-6 text-right"><strong>Mileage</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Mileage</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.mileage}">Display Mileage</span><br/>
                 </div>
-                <div class="col-6 text-right"><strong>Transmission</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Transmission</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.transmission}">Display Transmission</span><br/>
                 </div>
-                <div class="col-6 text-right"><strong>Interior</strong></div>
-                <div class="col-6 text-left">
+                <div class="col-3 text-right"><strong>Interior</strong></div>
+                <div class="col-3 text-left">
                     <span th:text="${car.color}">Display Interior</span><br/>
                 </div>
+                
             </div>
         </div>
         <!-- End main body -->
