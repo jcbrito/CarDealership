@@ -137,6 +137,13 @@ public class HomeController {
         return "homeSpecials";
     }
 
+    @GetMapping("carDetail")
+    public String courseDetail(Integer id, Model model) {
+        Car car = dao.getCarById(id);
+        model.addAttribute("car", car);
+        return "details";
+    }
+
     @GetMapping("contact")
     public String displayContact(Model model) {
 

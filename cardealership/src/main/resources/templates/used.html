@@ -191,7 +191,7 @@
                                 <td th:text="${car.make}">Car Make</td>
                                 <td th:text="${car.model}">Car Model</td>
                                 <td th:text="${car.salePrice}">Car Price</td>
-                                <td>Details</td>
+                                <td><a href="#" th:href="@{carDetail(id=${car.carId})}">Details</a></td>
 
                             </tr>
                         </tbody>
