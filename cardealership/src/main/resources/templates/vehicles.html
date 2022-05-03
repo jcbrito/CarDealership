@@ -15,71 +15,73 @@
             <span class="h3">Vehicles Admin</span>
         </div>
         
+        <a class="btn btn-primary" href="#" th:href="@{/admin/addVehicle}">Add Vehicle</a>
+        
         <!-- search box -->   
         <div class="container">
             <div class="card">
-                <form id="searchForm">
+                <form id="searchForm" action="/admin/vehicles/q" method="GET">
                     <div class="form-group row justify-content-md-center">
 
-                        <label for="searchBar" class="col-form-label">Quick Search</label>
+                        <label for="search" class="col-form-label">Quick Search</label>
                         <div class="form-group col-3">
-                            <input type="text" name="searchBar" id="searchbar" class="form-control"
+                            <input type="text" name="search" id="search" class="form-control"
                                    placeholder="Enter model, make, or year..." />
                         </div>
 
                         <label for="priceMin" class="col-form-label">Price Range</label>
                         <div class="form-group col-2">
                             <select id="priceMin" name="priceMin" class="form-control">
-                                <option>None</option>
-                                <option>500</option>
-                                <option>1,000</option>
-                                <option>2,000</option>
-                                <option>3,000</option>
-                                <option>4,000</option>
-                                <option>5,000</option>
-                                <option>10,000</option>
-                                <option>15,000</option>
-                                <option>20,000</option>
-                                <option>25,000</option>
-                                <option>30,000</option>
-                                <option>35,000</option>
-                                <option>40,000</option>
-                                <option>45,000</option>
-                                <option>50,000</option>
-                                <option>60,000</option>
-                                <option>70,000</option>
-                                <option>80,000</option>
-                                <option>90,000</option>
-                                <option>100,000</option>
-                                <option>150,000</option>
-                                <option>200,000</option>
+                                <option value=0>None</option>
+                                <option value=500>500</option>
+                                <option value=1000>1,000</option>
+                                <option value=2000>2,000</option>
+                                <option value=3000>3,000</option>
+                                <option value=4000>4,000</option>
+                                <option value=5000>5,000</option>
+                                <option value=10000>10,000</option>
+                                <option value=15000>15,000</option>
+                                <option value=20000>20,000</option>
+                                <option value=25000>25,000</option>
+                                <option value=30000>30,000</option>
+                                <option value=35000>35,000</option>
+                                <option value=40000>40,000</option>
+                                <option value=45000>45,000</option>
+                                <option value=50000>50,000</option>
+                                <option value=60000>60,000</option>
+                                <option value=70000>70,000</option>
+                                <option value=80000>80,000</option>
+                                <option value=90000>90,000</option>
+                                <option value=100000>100,000</option>
+                                <option value=150000>150,000</option>
+                                <option value=200000>200,000</option>
                             </select>
                         </div>
                         <div class="form-group col-2">
                             <select id="priceMax" name="priceMax" class="form-control">
-                                <option>None</option>
-                                <option>500</option>
-                                <option>1,000</option>
-                                <option>2,000</option>
-                                <option>3,000</option>
-                                <option>4,000</option>
-                                <option>5,000</option>
-                                <option>10,000</option>
-                                <option>15,000</option>
-                                <option>20,000</option>
-                                <option>25,000</option>
-                                <option>30,000</option>
-                                <option>35,000</option>
-                                <option>40,000</option>
-                                <option>45,000</option>
-                                <option>50,000</option>
-                                <option>60,000</option>
-                                <option>70,000</option>
-                                <option>80,000</option>
-                                <option>90,000</option>
-                                <option>100,000</option>
-                                <option>150,000</option>
-                                <option>200,000</option>
+                                <option value=0>None</option>
+                                <option value=500>500</option>
+                                <option value=1000>1,000</option>
+                                <option value=2000>2,000</option>
+                                <option value=3000>3,000</option>
+                                <option value=4000>4,000</option>
+                                <option value=5000>5,000</option>
+                                <option value=10000>10,000</option>
+                                <option value=15000>15,000</option>
+                                <option value=20000>20,000</option>
+                                <option value=25000>25,000</option>
+                                <option value=30000>30,000</option>
+                                <option value=35000>35,000</option>
+                                <option value=40000>40,000</option>
+                                <option value=45000>45,000</option>
+                                <option value=50000>50,000</option>
+                                <option value=60000>60,000</option>
+                                <option value=70000>70,000</option>
+                                <option value=80000>80,000</option>
+                                <option value=90000>90,000</option>
+                                <option value=100000>100,000</option>
+                                <option value=150000>150,000</option>
+                                <option value=200000>200,000</option>
                             </select>
                         </div>
                     </div>
@@ -88,39 +90,43 @@
                         <label for="yearMin" class="col-form-label">Year Range</label>
                         <div class="form-group col-2">
                             <select id="yearMin" name="yearMin" class="form-control">
-                                <option>None</option>
-                                <option>1970</option>
-                                <option>1975</option>
-                                <option>1980</option>
-                                <option>1985</option>
-                                <option>1990</option>
-                                <option>1995</option>
-                                <option>2000</option>
-                                <option>2005</option>
-                                <option>2010</option>
-                                <option>2015</option>
-                                <option>2020</option>
+                                <option value=0>None</option>
+                                <option value=1970>1970</option>
+                                <option value=1975>1975</option>
+                                <option value=1980>1980</option>
+                                <option value=1985>1985</option>
+                                <option value=1990>1990</option>
+                                <option value=1995>1995</option>
+                                <option value=2000>2000</option>
+                                <option value=2005>2005</option>
+                                <option value=2010>2010</option>
+                                <option value=2015>2015</option>
+                                <option value=2020>2020</option>
                             </select>
                         </div>
                         <div class="form-group col-2">
                             <select id="yearMax" name="yearMax" class="form-control">
-                                <option>None</option>
-                                <option>1970</option>
-                                <option>1975</option>
-                                <option>1980</option>
-                                <option>1985</option>
-                                <option>1990</option>
-                                <option>1995</option>
-                                <option>2000</option>
-                                <option>2005</option>
-                                <option>2010</option>
-                                <option>2015</option>
-                                <option>2020</option>
+                                <option value=0>None</option>
+                                <option value=1970>1970</option>
+                                <option value=1975>1975</option>
+                                <option value=1980>1980</option>
+                                <option value=1985>1985</option>
+                                <option value=1990>1990</option>
+                                <option value=1995>1995</option>
+                                <option value=2000>2000</option>
+                                <option value=2005>2005</option>
+                                <option value=2010>2010</option>
+                                <option value=2015>2015</option>
+                                <option value=2020>2020</option>
                             </select>
                         </div>
 
                         <div class="form-group col-2">
-                            <button type="button" id="searchButton" class="btn btn-primary">Search</button>
+                            <button type="submit" id="searchButton" class="btn btn-primary">Search</button>
+                        </div>
+                        
+                        <div class="form-group col-2">
+                            <a class="btn btn-primary" href="#" th:href="@{/admin/vehicles}">Clear Filters</a>
                         </div>
                     </div>
 
@@ -131,14 +137,18 @@
                     
         <div id="searchResultsDiv" class="container">
             
-            <div class="card" th:each="vehicle : ${vehicles}">
+            <div class="card" th:if="${vehicles.isEmpty()}">
+                <h5>No results found</h5>
+            </div>
+            
+            <div class="card" th:each="vehicle : ${vehicles}" th:if="${!vehicle.sold}">
                 <div class="card-header">
                     <h5 th:text="${vehicle.year}+' '+${vehicle.Make}+' '+${vehicle.Model}">Title</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <img class="img-thumbnail" src="https://media.istockphoto.com/photos/illustration-of-generic-compact-car-perspective-view-picture-id1148853697?k=20&m=1148853697&s=612x612&w=0&h=x_IL5R5PF48fTZhuD-1gMHDqstoxyrUfRMH-Oet-7Mk=">
+                            <img class="img-thumbnail" th:src="@{/admin/getImage(carId=${vehicle.carId})}">
                         </div>
                         <div class="col-3">
                             <p th:text="'Body Style: '+${vehicle.bodyStyle}">Body Style</p>

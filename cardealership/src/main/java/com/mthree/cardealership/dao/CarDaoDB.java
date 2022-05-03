@@ -75,99 +75,125 @@ public class CarDaoDB implements CarDao {
         }
 
         if (!filters.isEmpty()) {
-            GET_CARS_WITH_FILTERS += " WHERE ";
 
-            while (true) {
-                GET_CARS_WITH_FILTERS += filters.pop();
-                if (!filters.isEmpty()) {
-                    GET_CARS_WITH_FILTERS += " AND ";
-                } else {
-                    break;
+            if (minPrice != 0) {
+                filters.push("car.salePrice >= " + minPrice);
+            }
+            if (maxPrice != 0) {
+                filters.push("car.salePrice <= " + minPrice);
+            }
+            if (minYear != 0) {
+                filters.push("car.carYear >= " + minYear);
+            }
+            if (maxYear != 0) {
+                filters.push("car.carYear <= " + maxYear);
+            }
+            if (trimmedTerm.length() > 0) {
+                filters.push("(car.make LIKE '%" + trimmedTerm + "%'"
+                        + "OR car.model LIKE '%" + trimmedTerm + "%')");
+            }
+            if (year != 0) {
+                filters.push("car.carYear = " + year);
+            }
+
+            if (!filters.isEmpty()) {
+
+                GET_CARS_WITH_FILTERS += " WHERE ";
+
+                while (true) {
+                    GET_CARS_WITH_FILTERS += filters.pop();
+                    if (!filters.isEmpty()) {
+                        GET_CARS_WITH_FILTERS += " AND ";
+                    } else {
+                        break;
+                    }
                 }
             }
         }
+            return jdbc.query(GET_CARS_WITH_FILTERS, new CarMapper());
+        }
+    
 
-        return jdbc.query(GET_CARS_WITH_FILTERS, new CarMapper());
-    }
-
-    @Override
-    @Transactional
-    public Car addCar(Car car) {
+        @Override
+        @Transactional
+        public Car addCar(Car car) {
         final String ADD_CAR = "INSERT INTO car(Vin, Make, Model, CarDescription, "
-                + "CarYear, SalePrice, MSRP, Color, Interior, BodyStyle, Transmission, "
-                + "Mileage, Used, Sold, ImageBinary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "CarYear, SalePrice, MSRP, Color, Interior, BodyStyle, Transmission, "
+                    + "Mileage, Used, Sold, ImageBinary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        jdbc.update(ADD_CAR,
-                car.getVin(),
-                car.getMake(),
-                car.getModel(),
-                car.getDescription(),
-                car.getYear(),
-                car.getSalePrice(),
-                car.getMsrp(),
-                car.getColor(),
-                car.getInterior(),
-                car.getBodyStyle(),
-                car.getTransmission(),
-                car.getMileage(),
-                car.isUsed(),
-                car.isSold(),
-                car.getImageBinary()
-        );
+            jdbc.update(ADD_CAR,
+                    car.getVin(),
+                    car.getMake(),
+                    car.getModel(),
+                    car.getDescription(),
+                    car.getYear(),
+                    car.getSalePrice(),
+                    car.getMsrp(),
+                    car.getColor(),
+                    car.getInterior(),
+                    car.getBodyStyle(),
+                    car.getTransmission(),
+                    car.getMileage(),
+                    car.isUsed(),
+                    car.isSold(),
+                    car.getImageBinary()
+            );
 
-        car.setCarId(jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
+            car.setCarId(jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class));
 
-        return car;
-    }
+            return car;
+        }
 
-    @Override
-    public void updateCar(Car car) {
+        @Override
+        public void updateCar(Car car) {
         final String UPDATE_CAR = "UPDATE car SET Vin = ?, Make = ?, Model = ?, CarDescription = ?, "
-                + "CarYear = ?, SalePrice = ?, MSRP = ?, Color = ?, Interior = ?, BodyStyle = ?, Transmission = ?, "
-                + "Mileage = ?, Used = ?, Sold = ?, ImageBinary = ? WHERE CarId = ?";
+                    + "CarYear = ?, SalePrice = ?, MSRP = ?, Color = ?, Interior = ?, BodyStyle = ?, Transmission = ?, "
+                    + "Mileage = ?, Used = ?, Sold = ?, ImageBinary = ? WHERE CarId = ?";
 
-        jdbc.update(UPDATE_CAR,
-                car.getVin(),
-                car.getMake(),
-                car.getModel(),
-                car.getDescription(),
-                car.getYear(),
-                car.getSalePrice(),
-                car.getMsrp(),
-                car.getColor(),
-                car.getInterior(),
-                car.getBodyStyle(),
-                car.getTransmission(),
-                car.getMileage(),
-                car.isUsed(),
-                car.isSold(),
-                car.getImageBinary(),
-                car.getCarId()
-        );
+            jdbc.update(UPDATE_CAR,
+                    car.getVin(),
+                    car.getMake(),
+                    car.getModel(),
+                    car.getDescription(),
+                    car.getYear(),
+                    car.getSalePrice(),
+                    car.getMsrp(),
+                    car.getColor(),
+                    car.getInterior(),
+                    car.getBodyStyle(),
+                    car.getTransmission(),
+                    car.getMileage(),
+                    car.isUsed(),
+                    car.isSold(),
+                    car.getImageBinary(),
+                    car.getCarId()
+            );
 
-    }
+        }
 
-    @Override
-    @Transactional
-    public void deleteCarById(int carId) {
+        @Override
+        @Transactional
+        public void deleteCarById(int carId) {
 
         //De;ete sales invoices that reference the car to be deleted
         final String DELETE_INVOICE = "DELETE FROM invoice WHERE invoice.CarId = ?";
-        jdbc.update(DELETE_INVOICE, carId);
+            jdbc.update(DELETE_INVOICE, carId);
 
-        final String DELETE_CAR = "DELETE FROM car WHERE CarId = ?";
-        jdbc.update(DELETE_CAR, carId);
+            final String DELETE_CAR = "DELETE FROM car WHERE CarId = ?";
+            jdbc.update(DELETE_CAR, carId);
 
-    }
+        }
 
-    @Override
-    public List<Car> getAllSpecials() {
+        @Override
+        public List<Car> getAllSpecials() {
 
         final String GET_CARS = "select * from car "
-                + "join special on car.carid = special.carid";
-        return jdbc.query(GET_CARS, new CarMapper());
+                    + "join special on car.carid = special.carid";
+            return jdbc.query(GET_CARS, new CarMapper());
 
-    }
+        }
+
+    
 
     public static final class CarMapper implements RowMapper<Car> {
 
