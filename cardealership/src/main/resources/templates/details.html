@@ -24,7 +24,7 @@
 
         <title>Car Dealership</title>
     </head>
-    <body onload='setField()'>
+    <body>
 
         <!-- What will be visible in all pages--> 
         <div class="container">
@@ -56,18 +56,6 @@
         </div> 
 
         <!-- Main Body of Page -->
-
-        <script type='text/javascript'>
-
-            function setField() {
-                var qString = location.search;
-                if (qString.indexOf('vin') != -1) {
-                    var data = qString.substring(qString.indexOf('=') + 1, qString.length);
-                    document.forms[0].myDate.value = data;
-                }
-            }
-
-        </script>
 
 
         <hr class="solid"> 
