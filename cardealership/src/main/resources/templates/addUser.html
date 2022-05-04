@@ -40,12 +40,14 @@
                         
                         <label for="role" class="col-2 col-form-label">Role</label>
                         <div class="col-4">
-                            <select id="role" name="roleId" class="form-group">
-                                <option th:each="role : ${roles}" 
-                                        th:value="${role.id}" 
-                                        th:text="${role.name 
-                                        th:selected="1">
-                                    Role</option>
+                            <select id="role" name="role" class="form-group">
+<!--                                <option th:each="role : ${roles}" -->
+<!--                                        th:value="${role.id}" -->
+<!--                                        th:text="${role.name}"-->
+<!--                                        th:selected="1">-->
+<!--                                    Role</option>-->
+                                <option id="sales" value="1" th:selected="1">SalesPerson</option>
+                                <option id="admin" value="2" th:selected="2">Admin</option>
                             </select>
                         </div>
                     </div>

@@ -14,12 +14,23 @@
 
     <div class="container">
         <br>
-        <h3 class="text-center text-primary">Log In</h3>
+        <h3 class="text-center text-primary">Employee Access Only</h3>
         <br><hr><br>
 
         <div id="loginDiv" class="text-center text-primary">
             <h5>Please Log In to gain access</h5><br>
-            <form action="login" method="POST">
+            <p th:if="${loginError}" class="error">Invalid Email or Password.</p>
+            <form th:action="@{/login}" method="POST">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid Email or Password.
+                    </div>
+                </div>
+                <div th:if="${param.success}">
+                    <div class="alert alert-success">
+                        Successfully Signed Out.
+                    </div>
+                </div>
                 <label></label>
                 <input type="text"
                        name="email"

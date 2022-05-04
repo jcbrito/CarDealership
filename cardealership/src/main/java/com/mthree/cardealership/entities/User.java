@@ -6,7 +6,13 @@ package com.mthree.cardealership.entities;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Objects;
+
+import static java.awt.SystemColor.text;
 
 /**
  *
@@ -26,13 +32,8 @@ public class User {
     @NotBlank(message = "Last name must not be empty.")
     private String lastName;
 
-    private int permissionId;
-
     @NotBlank(message = "Password must not be empty.")
     private String password;
-
-    @NotBlank
-    private boolean loggedIn;
 
     public User() {
 
@@ -41,7 +42,6 @@ public class User {
     public User(@NotBlank String email, @NotBlank String password) {
         this.email = email;
         this.password = password;
-        this.loggedIn = false;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, permissionId, password, loggedIn);
+        return Objects.hash(id, email, firstName, lastName, password);
     }
 
     @Override
@@ -63,16 +63,7 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", loggedIn=" + loggedIn +
                 '}';
-    }
-
-    public boolean isLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
     }
 
     public String getPassword() {
@@ -114,14 +105,5 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public int getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(int permissionId) {
-        this.permissionId = permissionId;
-    }
-    
     
 }

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -20,6 +22,19 @@ public class UserDaoDB implements UserDao {
 
     @Autowired
     JdbcTemplate jdbc;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    //Check if input password matches encoded password
+    @Override
+    public boolean checkPassword(User user, String password) {
+        return passwordEncoder.matches(password, user.getPassword());
+    }
+
+    //Uses SCryptPasswordEncoder to encode password
+    @Override
+    public String hashPassword(String password) {
+        return passwordEncoder.encode(password);
+    }
 
     @Override
     public User getUserById(int userId) {
@@ -54,15 +69,13 @@ public class UserDaoDB implements UserDao {
 
     @Override
     public User addUser(User user) {
-        final String INSERT_USER = "INSERT INTO Users(Email, Password, FirstName, LastName, PermissionId, LoggedIn)" +
-                "VALUES(?,?,?,?,?,?)";
+        final String INSERT_USER = "INSERT INTO Users(Email, Password, FirstName, LastName)" +
+                "VALUES(?,?,?,?)";
         jdbc.update(INSERT_USER,
                 user.getEmail(),
                 user.getPassword(),
                 user.getFirstName(),
-                user.getLastName(),
-                user.getPermissionId(),
-                user.isLoggedIn());
+                user.getLastName());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         user.setId(newId);
@@ -71,15 +84,12 @@ public class UserDaoDB implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        final String UPDATE_USER = "Update Users SET Email = ?, Password = ?, FirstName = ?, LastName = ?, " +
-                "PermissionId = ? WHERE UserId = ?";
+        final String UPDATE_USER = "Update Users SET Email = ?, Password = ?, FirstName = ?, LastName = ? WHERE UserId = ?";
         jdbc.update(UPDATE_USER,
                 user.getEmail(),
                 user.getPassword(),
                 user.getFirstName(),
-                user.getLastName(),
-                user.getPermissionId(),
-                user.isLoggedIn());
+                user.getLastName());
     }
 
     @Override
@@ -97,9 +107,7 @@ public class UserDaoDB implements UserDao {
             user.setEmail(rs.getString("email"));
             user.setFirstName(rs.getString("firstName"));
             user.setLastName(rs.getString("lastName"));
-            user.setPermissionId(rs.getInt("permissionId"));
             user.setPassword(rs.getString("password"));
-            user.setLoggedIn(rs.getBoolean("loggedIn"));
 
             return user;
         }

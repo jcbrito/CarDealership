@@ -6,7 +6,20 @@
 </head>
 <body>
 
-<h1>Welcome, {{ username }}!</h1>
+<h1>Successfully Logged in!</h1>
+
+<p th:if="${loginSuccess}" class="success">Welcome.</p>
+<div th:if="${param.success}">
+    <div class="alert alert-primary">
+        Welcome {{ sessionScope.email }}!
+    </div>
+</div>
+
+<br>
+
+<form th:action="@{/logout}" method="POST">
+    <button id="submitBtn" type="submit" class="btn btn-primary">Sign Out</button>
+</form>
 
 </body>
 </html>
