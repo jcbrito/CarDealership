@@ -7,20 +7,28 @@ package com.mthree.cardealership.controller;
 import com.mthree.cardealership.dao.CarDao;
 import com.mthree.cardealership.entities.Car;
 import java.math.BigDecimal;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author Juan
  */
 @Controller
+//@RequestMapping("home")
 public class HomeController {
 
     @Autowired
@@ -33,10 +41,47 @@ public class HomeController {
         List<Car> specials = dao.getAllSpecials();
         model.addAttribute("cars", cars);
         model.addAttribute("specials", specials);
+        
+//        List<ResponseEntity<byte[]>> images= new ArrayList<>();
+//        
+//        specials.stream().forEach((s)-> images.add(getImage(s.getCarId())));
+//       
+//              
+//        model.addAttribute("images", images);
 
         return "home";
     }
 
+     /**
+     * Retrieves the image BLOB for a given car ID and builds an HTTP response
+     * entity that can be used in the src attribute of an image tag
+     * @param carId
+     * @return ResponseEntity
+     */
+    @GetMapping("image")
+    public ResponseEntity<byte[]> getImage(@RequestParam int carId){
+        
+        try{
+            Blob imgBlob = dao.getCarById(carId).getImageBinary();
+            byte[] imgBinary = imgBlob.getBytes(1, (int)imgBlob.length());
+            final HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_PNG);
+            
+            return new ResponseEntity<>(
+                    imgBinary, 
+                    headers,
+                    HttpStatus.OK
+            );
+            
+        }
+        catch(SQLException e){
+            return null;
+        }
+        
+    }
+    
+    
+    
     @GetMapping("new")
     public String displayNewCars(Model model, String makeModelYear, String priceMin, String priceMax, String yearMax, String yearMin) {
         //getting all fields from the search bar
