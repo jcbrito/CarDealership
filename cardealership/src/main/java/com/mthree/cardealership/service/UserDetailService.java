@@ -48,26 +48,4 @@ public class UserDetailService implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
     }
-
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        User user = userDao.getUserByEmail(email);
-//        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-//        return buildUserForAuthentication(user, authorities);
-//    }
-//
-//    private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
-//        Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
-//        for (Role role : userRoles) {
-//            roles.add(new SimpleGrantedAuthority(role.getName()));
-//        }
-//        List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
-//        return grantedAuthorities;
-//    }
-//
-//    private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-//        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-//                user.getActive(), true, true, true, authorities);
-//    }
 }

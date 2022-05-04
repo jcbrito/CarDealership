@@ -22,19 +22,6 @@ public class UserDaoDB implements UserDao {
 
     @Autowired
     JdbcTemplate jdbc;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    //Check if input password matches encoded password
-    @Override
-    public boolean checkPassword(User user, String password) {
-        return passwordEncoder.matches(password, user.getPassword());
-    }
-
-    //Uses SCryptPasswordEncoder to encode password
-    @Override
-    public String hashPassword(String password) {
-        return passwordEncoder.encode(password);
-    }
 
     @Override
     public User getUserById(int userId) {
