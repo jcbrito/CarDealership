@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private UserRepository userRepository;
-    private UserDao userDao;
     private RoleRepository roleRepository;
 
     @Autowired
@@ -26,10 +25,6 @@ public class UserService {
     public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-    }
-
-    public User findUserByEmail(String email) {
-        return userDao.getUserByEmail(email);
     }
 
     public User saveUser(User user) {

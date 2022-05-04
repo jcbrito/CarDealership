@@ -7,6 +7,36 @@
         <title>Add Vehicle</title>
     </head>
     <body>
+    <!-- Nav -->
+    <div class="container">
+        <div class="row m-4 border border-dark">
+
+            <div class="col text-center m-3">
+                <a href="addUser" class="btn btn-primary btn-lg">Add User</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="editUser" class="btn btn-primary btn-lg">Edit User</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="addVehicle" class="btn btn-primary btn-lg">Add Vehicle</a>
+            </div>
+            <div class="col text-center m-3">
+                <a href="editVehicle" class="btn btn-primary btn-lg">Edit Vehicle</a>
+            </div>
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <p>
+                        <!--        <div sec:authorize="isAuthenticated()">-->
+                        Welcome <b><span sec:authentication="name"></span></b>
+                        <!--        </div>-->
+
+                    </p>
+                    <input type="submit" value="Sign Out" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Nav -->
         <div class="container">
             <div class="row m-4 border border-dark">
                 <div class="col-3 text-center">

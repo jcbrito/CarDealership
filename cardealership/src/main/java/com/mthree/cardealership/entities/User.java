@@ -50,14 +50,6 @@ public class User {
     @Column(name="active")
     private Boolean active;
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
     @ManyToMany
     private Set<Role> roles;
 
@@ -91,6 +83,15 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
 
     public Set<Role> getRoles() {
         return roles;
