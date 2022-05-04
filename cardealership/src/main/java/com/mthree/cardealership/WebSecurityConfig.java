@@ -53,12 +53,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //Pages that don't require you to be logged in
         http.authorizeRequests().antMatchers("/","/login","/logout","/contact","/details","/home","/homeSpecials",
-                "/new","/specials","/used","/vehicles");
+                "/new","/specials","/used","/vehicles","/carDetail").permitAll();
 
         http.
                 authorizeRequests()
                 .antMatchers("/resources/**", "/login", "/", "/home", "/contact", "/details","/homeSpecials",
-                        "/new", "/specials","/used","/vehicles").permitAll()
+                        "/new", "/specials","/used","/vehicles","/image","details").permitAll()
 //                .antMatchers("/login").permitAll()
 //                .antMatchers("/addUser").permitAll()
                 .antMatchers("/admin/**","/addUser").hasAuthority("ADMIN").anyRequest()

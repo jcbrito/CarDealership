@@ -66,7 +66,7 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" th:src="@{/admin/getImage(carId=1)}" alt="First slide">
+                            <img class="d-block w-100" th:src="@{/image(carId=1)}" alt="First slide">
 
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Today's Deals</h5>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" th:each="special : ${specials}">
-                            <img class="d-block w-100" th:src="@{/admin/getImage(carId=${special.carId})}" alt="carousel img">
+                            <img class="d-block w-100" th:src="@{image(carId=${special.carId})}" alt="carousel img">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 th:text='${special.year}'></h5>
                                 <h5 th:text='${special.make}'></h5>
