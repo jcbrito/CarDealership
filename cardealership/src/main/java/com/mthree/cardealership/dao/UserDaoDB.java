@@ -1,6 +1,7 @@
 package com.mthree.cardealership.dao;
 
 import com.mthree.cardealership.entities.User;
+import com.mthree.cardealership.security.Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,9 @@ import java.util.List;
  */
 @Repository
 public class UserDaoDB implements UserDao {
+
+    @Autowired
+    private Encoder bCryptPasswordEncoder;
 
     @Autowired
     JdbcTemplate jdbc;
@@ -56,11 +60,16 @@ public class UserDaoDB implements UserDao {
 
     @Override
     public User addUser(User user) {
-        final String INSERT_USER = "INSERT INTO Users(Email, Password, FirstName, LastName)" +
-                "VALUES(?,?,?,?)";
+        final String INSERT_USER = "INSERT INTO Users(Email, Password, Active, FirstName, LastName)" +
+                "VALUES(?,?,?,?,?)";
+
+        String encoded = this.bCryptPasswordEncoder.passwordEncoder().encode(user.getPassword());
+        Boolean active = true;
+
         jdbc.update(INSERT_USER,
                 user.getEmail(),
-                user.getPassword(),
+                encoded,
+                active,
                 user.getFirstName(),
                 user.getLastName());
 
@@ -71,10 +80,14 @@ public class UserDaoDB implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        final String UPDATE_USER = "Update Users SET Email = ?, Password = ?, FirstName = ?, LastName = ? WHERE UserId = ?";
+        final String UPDATE_USER = "Update Users SET Email = ?, Password = ?, Active = ?, FirstName = ?, LastName = ? WHERE UserId = ?";
+
+        String encoded = this.bCryptPasswordEncoder.passwordEncoder().encode(user.getPassword());
+
         jdbc.update(UPDATE_USER,
                 user.getEmail(),
-                user.getPassword(),
+                encoded,
+                user.getActive(),
                 user.getFirstName(),
                 user.getLastName());
     }

@@ -3,7 +3,6 @@ package com.mthree.cardealership.service;
 import com.mthree.cardealership.dao.UserDao;
 import com.mthree.cardealership.entities.Role;
 import com.mthree.cardealership.entities.User;
-import com.mthree.cardealership.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,9 +27,6 @@ import java.util.Set;
  */
 @Service
 public class UserDetailService implements UserDetailsService {
-    @Autowired
-    private UserService userService;
-
     @Autowired
     private UserDao userDao;
 

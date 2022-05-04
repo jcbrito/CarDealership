@@ -36,8 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests()
+                //Access without logging in
                 .antMatchers("/resources/**", "/login", "/", "/home", "/contact", "/details", "/homeSpecials",
                         "/new", "/specials", "/used", "/vehicles", "/image", "/carDetail").permitAll()
+                //Admin only access
                 .antMatchers("/admin/**", "/addUser").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
@@ -46,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").and().exceptionHandling()
+                .logoutSuccessUrl("/login?success=true").and().exceptionHandling()
                 .accessDeniedPage("/access-denied");
     }
 }

@@ -3,7 +3,6 @@ package com.mthree.cardealership.controller;
 import ch.qos.logback.core.status.Status;
 import com.mthree.cardealership.dao.UserDao;
 import com.mthree.cardealership.entities.User;
-import com.mthree.cardealership.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,9 +30,6 @@ public class UserController {
 
     @Autowired
     UserDao userDao;
-
-    @Autowired
-    UserService userService;
 
     private boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -69,7 +65,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "addUser";
         } else {
-            userService.saveUser(user);
+            userDao.addUser(user);
             model.addAttribute("successMessage", "User has been registered successfully");
             model.addAttribute("user", new User());
             return "login";
