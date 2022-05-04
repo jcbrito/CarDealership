@@ -7,6 +7,22 @@
         <title>Add User</title>
     </head>
     <body>
+    <div class="container text-center">
+        <!--    <br>-->
+        <!--    <h3 class="text-center text-primary">Profile Page</h3>-->
+        <!--    <br><hr><br>-->
+
+        <form th:action="@{/logout}" method="post">
+            <p>
+                <!--        <div sec:authorize="isAuthenticated()">-->
+                Welcome <b><span sec:authentication="name"></span></b>
+                <!--        </div>-->
+
+            </p>
+            <input type="submit" value="Sign Out" />
+        </form>
+        <hr><br>
+
         <div class="container">
             <div class="row m-4 border border-dark">
                 <div class="col-3 text-center">

@@ -34,6 +34,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        return new BCryptPasswordEncoder();
 //    }
 
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("admin").password("password").roles("ADMIN"); // admin in your case
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -43,11 +51,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //Pages that don't require you to be logged in
+        http.authorizeRequests().antMatchers("/","/login","/logout","/contact","/details","/home","/homeSpecials",
+                "/new","/specials","/used","/vehicles");
+
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/addUser").permitAll()
+                .antMatchers("/resources/**", "/login", "/", "/home", "/contact", "/details","/homeSpecials",
+                        "/new", "/specials","/used","/vehicles").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/addUser").permitAll()
                 .antMatchers("/admin/**","/addUser").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
@@ -60,9 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/access-denied");
 //        http.csrf().disable();
 //
-//        //Pages that don't require you to be logged in
-//        http.authorizeRequests().antMatchers("/","/login","/logout","/contact","/details","/home","/homeSpecials",
-//                "/new","/specials","/used","/vehicles");
+
 //
 //        //Admin only access
 //        http.authorizeRequests().antMatchers("/addUser", "/editUser", "/addVehicle",
