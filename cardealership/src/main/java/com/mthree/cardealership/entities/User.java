@@ -4,6 +4,7 @@
  */
 package com.mthree.cardealership.entities;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.nio.charset.StandardCharsets;
@@ -11,29 +12,54 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Objects;
+import java.util.Set;
 
 import static java.awt.SystemColor.text;
 
 /**
  *
- * @author Henry
+ * @author Henry, Lewi
  */
+
+@Entity
+@Table(name = "Users")
 public class User {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="userid")
     private int id;
 
     @NotBlank(message = "Email must not be empty.")
     @Size(max = 60, message = "Email is too long.")
+    @Column(name="email")
     private String email;
 
     @NotBlank(message = "First name must not be empty.")
+    @Column(name="firstname")
     private String firstName;
 
     @NotBlank(message = "Last name must not be empty.")
+    @Column(name="lastname")
     private String lastName;
 
     @NotBlank(message = "Password must not be empty.")
+    @Column(name="password")
     private String password;
+
+    @Column(name="active")
+    private Boolean active;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @ManyToMany
+    private Set<Role> roles;
 
     public User() {
 
@@ -64,6 +90,14 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public String getPassword() {
