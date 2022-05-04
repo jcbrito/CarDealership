@@ -80,10 +80,11 @@
 
                 <label for="message">Message:</label><br>
 
-                <textarea id="message" name="message" rows="5" cols="50" th:text="vin + ': ' + ${param.vin}">
+                <textarea style="font-size:20px;" id="message" name="message" rows="5" cols="50" th:text="vin + ': ' + ${param.vin}">
 
                 </textarea>
-                <a>Submit</a>
+                <br>
+                <a type="button" onclick="alert('Hello World!')" class="btn btn-primary btn-lg">Submit</a>
             </form>
 
 

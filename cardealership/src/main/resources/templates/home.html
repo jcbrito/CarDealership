@@ -70,16 +70,16 @@
 
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Today's Deals</h5>
-                                <p>Click to see all deals</p>
+                                 <a style="font-size:30px;" href="#" th:href="@{homeSpecials}" >Click to see all deals</a>
                             </div>
                         </div>
                         <div class="carousel-item" th:each="special : ${specials}">
                             <img class="d-block w-100" th:src="@{image(carId=${special.carId})}" alt="carousel img">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5 th:text='${special.year}'></h5>
-                                <h5 th:text='${special.make}'></h5>
-                                <h5 th:text='${special.model}'></h5>
-                                <p>Click to see all deals</p>
+                                <h5 style="font-size:30px;" th:text='${special.year}'></h5>
+                                <h5 style="font-size:30px;" th:text='${special.make}'></h5>
+                                <h5 style="font-size:30px;" th:text='${special.model}'></h5>
+                                <a  href="#" th:href="@{homeSpecials}" style="font-size:30px;">Click to see all deals</a>
                             </div>
                         </div>
 
